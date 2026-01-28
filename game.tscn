@@ -1,5 +1,77 @@
-[gd_scene format=3 uid="uid://rhup3qv1f2vu"]
+[gd_scene load_steps=10 format=4 uid="uid://rhup3qv1f2vu"]
+
+[ext_resource type="PackedScene" uid="uid://cqe1mejxbupeo" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://cwtvvvaarlwcv" path="res://art/sprites/tiles.png" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://b7byneuw8ejak" path="res://coin.tscn" id="3_feb5d"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
+texture = ExtResource("1_e2o6t")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_80nbo"]
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_feb5d")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_80nbo"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_feb5d"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fc0e3"]
 
 [node name="Game" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD9/wQAAAAAAAAAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAKAAQAAAAAAAAAAAALAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAANAAQAAAAAAAAAAAAOAAQAAAAAAAAAAAAPAAQAAAAAAAAAAAAEAAMAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_80nbo")
+
+[node name="Player" parent="." instance=ExtResource("1_80nbo")]
+collision_mask = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(100, 0)
+zoom = Vector2(4, 4)
+
+[node name="WorldBoundaryDown" type="StaticBody2D" parent="."]
+position = Vector2(0, 81)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaryDown"]
+shape = SubResource("WorldBoundaryShape2D_80nbo")
+
+[node name="WorldBoundaryLeft" type="StaticBody2D" parent="."]
+position = Vector2(-44, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaryLeft"]
+shape = SubResource("WorldBoundaryShape2D_e2o6t")
+
+[node name="WorldBoundaryRight" type="StaticBody2D" parent="."]
+position = Vector2(244, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaryRight"]
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_feb5d")
+
+[node name="WorldBoundaryUp" type="StaticBody2D" parent="."]
+position = Vector2(0, -81)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaryUp"]
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_fc0e3")
+
+[node name="Coin" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(160, 0)

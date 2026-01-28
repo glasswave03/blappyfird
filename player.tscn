@@ -1,15 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqe1mejxbupeo"]
+[gd_scene load_steps=7 format=3 uid="uid://cqe1mejxbupeo"]
 
-[ext_resource type="Script" uid="uid://dhfcyolbpfm3u" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://0mykcwe56veg" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://nrsfft6dc65m" path="res://art/sprites/player.png" id="2_onrkg"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 0, 23, 22)
 
-[node name="player" type="CharacterBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(24, 0, 23, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hqtel"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onrkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
+radius = 7.0
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 100
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_4flbx")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_onrkg")
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hqtel")
+autoplay = "default"
+frame = 1
+frame_progress = 0.04383411
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4flbx")
