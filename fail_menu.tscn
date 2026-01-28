@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://crvsefiahonjm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jtth4"]
+font_size = 496
+
+[node name="FailMenu" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 924.0
+offset_bottom = 341.0
+text = "FAIL!"
+label_settings = SubResource("LabelSettings_jtth4")

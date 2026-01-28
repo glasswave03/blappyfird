@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://rhup3qv1f2vu"]
+[gd_scene load_steps=14 format=4 uid="uid://rhup3qv1f2vu"]
 
 [ext_resource type="PackedScene" uid="uid://cqe1mejxbupeo" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://cwtvvvaarlwcv" path="res://art/sprites/tiles.png" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://b7byneuw8ejak" path="res://coin.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://d0aruwtb2gcmg" path="res://killzone.tscn" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://dp63wyh8c437c" path="res://obstacle.tscn" id="5_7jktm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
 texture = ExtResource("1_e2o6t")
@@ -16,6 +18,11 @@ physics_layer_0/collision_layer = 1
 physics_layer_1/collision_layer = 2
 physics_layer_1/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_feb5d")
+
+[sub_resource type="LabelSettings" id="LabelSettings_feb5d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
+size = Vector2(16, 17)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_80nbo"]
 
@@ -39,39 +46,61 @@ collision_mask = 1
 offset = Vector2(100, 0)
 zoom = Vector2(4, 4)
 
-[node name="WorldBoundaryDown" type="StaticBody2D" parent="."]
+[node name="Coin" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(160, 0)
+
+[node name="ScoreCounter" type="Label" parent="."]
+offset_left = 80.0
+offset_top = -80.0
+offset_right = 113.0
+offset_bottom = -57.0
+text = "0"
+label_settings = SubResource("LabelSettings_feb5d")
+horizontal_alignment = 1
+
+[node name="Killzone" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(91.336105, -72.29133)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-19.336105, 128.79132)
+shape = SubResource("RectangleShape2D_7jktm")
+
+[node name="WorldBoundaries" type="Node" parent="."]
+
+[node name="WorldBoundaryDown" type="StaticBody2D" parent="WorldBoundaries"]
 position = Vector2(0, 81)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaryDown"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/WorldBoundaryDown"]
 shape = SubResource("WorldBoundaryShape2D_80nbo")
 
-[node name="WorldBoundaryLeft" type="StaticBody2D" parent="."]
+[node name="WorldBoundaryLeft" type="StaticBody2D" parent="WorldBoundaries"]
 position = Vector2(-44, 0)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaryLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/WorldBoundaryLeft"]
 shape = SubResource("WorldBoundaryShape2D_e2o6t")
 
-[node name="WorldBoundaryRight" type="StaticBody2D" parent="."]
+[node name="WorldBoundaryRight" type="StaticBody2D" parent="WorldBoundaries"]
 position = Vector2(244, 0)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaryRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/WorldBoundaryRight"]
 rotation = -1.5707964
 shape = SubResource("WorldBoundaryShape2D_feb5d")
 
-[node name="WorldBoundaryUp" type="StaticBody2D" parent="."]
+[node name="WorldBoundaryUp" type="StaticBody2D" parent="WorldBoundaries"]
 position = Vector2(0, -81)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaryUp"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/WorldBoundaryUp"]
 rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_fc0e3")
 
-[node name="Coin" parent="." instance=ExtResource("3_feb5d")]
-position = Vector2(160, 0)
+[node name="Obstacle" parent="." instance=ExtResource("5_7jktm")]
+position = Vector2(211, -24)
+scale = Vector2(1, 4.5600004)
