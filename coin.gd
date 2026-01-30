@@ -1,14 +1,16 @@
 extends Area2D
 
-@onready var score_counter: Label = $"../ScoreCounter"
+@onready var user_interface: Control = $"../UserInterface"
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-func _ready() -> void:
-	pass 
+const SPEED = 50
 
 func _process(delta: float) -> void:
-	pass
-
-
-func _on_body_entered(body: Node2D) -> void:
+	position.x -= SPEED * delta
 	
-	queue_free()
+	if position.x < -50:
+		queue_free()
+
+func _on_body_entered(_body: Node2D) -> void:
+	user_interface.add_score()
+	animation_player.play("pickup")

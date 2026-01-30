@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp63wyh8c437c"]
+[gd_scene load_steps=8 format=3 uid="uid://dp63wyh8c437c"]
 
 [ext_resource type="Texture2D" uid="uid://cwtvvvaarlwcv" path="res://art/sprites/tiles.png" id="1_sl1jc"]
+[ext_resource type="Script" uid="uid://dyex22kuqmhmn" path="res://obstacle.gd" id="1_vcivv"]
 [ext_resource type="PackedScene" uid="uid://d0aruwtb2gcmg" path="res://killzone.tscn" id="2_aubd6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aubd6"]
@@ -28,7 +29,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcivv"]
 size = Vector2(16, 16)
 
-[node name="Obstacle" type="Node2D"]
+[node name="Obstacle" type="Area2D"]
+script = ExtResource("1_vcivv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tyhon")

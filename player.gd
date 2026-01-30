@@ -1,12 +1,15 @@
 extends CharacterBody2D
 
 const SPEED = 100.0
-const JUMP_VELOCITY = -250.0
+const JUMP_VELOCITY = -200.0
+const ROTA = 360
+
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var jump_sfx: AudioStreamPlayer2D = $JumpSFX
 
 func _physics_process(delta: float) -> void:
 	# rotate towards y
-	rotation = velocity.y / 360
+	rotation = velocity.y / ROTA
 	
 	# gravity
 	if not is_on_floor():
@@ -15,6 +18,7 @@ func _physics_process(delta: float) -> void:
 	# handle jump and dive
 	if Input.is_action_just_pressed("jump"):
 		velocity.y = JUMP_VELOCITY
+		jump_sfx.play(0)
 	if Input.is_action_just_pressed("dive"):
 		velocity.y = SPEED
 

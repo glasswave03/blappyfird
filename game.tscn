@@ -1,28 +1,27 @@
-[gd_scene load_steps=14 format=4 uid="uid://rhup3qv1f2vu"]
+[gd_scene load_steps=16 format=4 uid="uid://rhup3qv1f2vu"]
 
 [ext_resource type="PackedScene" uid="uid://cqe1mejxbupeo" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://cwtvvvaarlwcv" path="res://art/sprites/tiles.png" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://b4mbsqwqoxyc3" path="res://game.gd" id="1_eow3j"]
 [ext_resource type="PackedScene" uid="uid://b7byneuw8ejak" path="res://coin.tscn" id="3_feb5d"]
-[ext_resource type="PackedScene" uid="uid://d0aruwtb2gcmg" path="res://killzone.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dp63wyh8c437c" path="res://obstacle.tscn" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://dteo8ttk3idft" path="res://user_interface.gd" id="6_ryrav"]
+[ext_resource type="AudioStream" uid="uid://cbcsa7s18nwxd" path="res://audio/blappyfird.wav" id="7_eow3j"]
+[ext_resource type="FontFile" uid="uid://blvs7xqobv1d" path="res://fonts/PixelOperator8.ttf" id="7_j5wjh"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ryrav"]
 texture = ExtResource("1_e2o6t")
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
-1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_80nbo"]
-physics_layer_0/collision_layer = 1
-physics_layer_1/collision_layer = 2
-physics_layer_1/collision_mask = 2
-sources/0 = SubResource("TileSetAtlasSource_feb5d")
-
-[sub_resource type="LabelSettings" id="LabelSettings_feb5d"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
-size = Vector2(16, 17)
+[sub_resource type="TileSet" id="TileSet_eow3j"]
+sources/1 = SubResource("TileSetAtlasSource_ryrav")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_80nbo"]
 
@@ -33,11 +32,15 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fc0e3"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_feb5d"]
+font = ExtResource("7_j5wjh")
+
 [node name="Game" type="Node2D"]
+script = ExtResource("1_eow3j")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD9/wQAAAAAAAAAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAKAAQAAAAAAAAAAAALAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAANAAQAAAAAAAAAAAAOAAQAAAAAAAAAAAAPAAQAAAAAAAAAAAAEAAMAAAABAAAAAAA=")
-tile_set = SubResource("TileSet_80nbo")
+tile_map_data = PackedByteArray("AAD9/wQAAQAAAAAAAAD+/wQAAQAAAAAAAAD//wQAAQAAAAAAAAAAAAQAAQAAAAAAAAABAAQAAQAAAAAAAAACAAQAAQAAAAAAAAADAAQAAQAAAAAAAAAEAAQAAQAAAAAAAAAFAAQAAQAAAAAAAAAGAAQAAQAAAAAAAAAHAAQAAQAAAAAAAAAIAAQAAQAAAAAAAAAJAAQAAQAAAAAAAAAKAAQAAQAAAAAAAAALAAQAAQAAAAAAAAAMAAQAAQAAAAAAAAANAAQAAQAAAAAAAAAOAAQAAQAAAAAAAAAPAAQAAQAAAAAAAAD9/wMAAQACAAEAAAD+/wMAAQACAAEAAAD//wMAAQACAAEAAAAAAAMAAQACAAEAAAABAAMAAQACAAEAAAACAAMAAQACAAEAAAADAAMAAQACAAEAAAAEAAMAAQACAAEAAAAFAAMAAQACAAEAAAAGAAMAAQACAAEAAAAHAAMAAQACAAEAAAAIAAMAAQACAAEAAAAJAAMAAQACAAEAAAAKAAMAAQACAAEAAAALAAMAAQACAAEAAAAMAAMAAQACAAEAAAANAAMAAQACAAEAAAAOAAMAAQACAAEAAAAPAAMAAQACAAEAAAD9/wIAAQACAAEAAAD+/wIAAQACAAEAAAD//wIAAQACAAEAAAAAAAIAAQACAAEAAAABAAIAAQACAAEAAAACAAIAAQACAAEAAAADAAIAAQACAAEAAAAEAAIAAQACAAEAAAAFAAIAAQACAAEAAAAGAAIAAQACAAEAAAAHAAIAAQACAAEAAAAIAAIAAQACAAEAAAAJAAIAAQACAAEAAAAKAAIAAQACAAEAAAALAAIAAQACAAEAAAAMAAIAAQACAAEAAAANAAIAAQACAAEAAAAOAAIAAQACAAEAAAAPAAIAAQACAAEAAAD9/wEAAQABAAIAAAD+/wEAAQABAAIAAAD//wEAAQABAAIAAAAAAAEAAQABAAIAAAABAAEAAQABAAIAAAACAAEAAQABAAIAAAADAAEAAQABAAIAAAAEAAEAAQABAAIAAAAFAAEAAQABAAIAAAAGAAEAAQABAAIAAAAHAAEAAQABAAIAAAAIAAEAAQABAAIAAAAJAAEAAQABAAIAAAAKAAEAAQABAAIAAAALAAEAAQABAAIAAAAMAAEAAQABAAIAAAANAAEAAQABAAIAAAAOAAEAAQABAAIAAAAPAAEAAQABAAIAAAD9/wAAAQABAAEAAAD+/wAAAQABAAEAAAD//wAAAQABAAEAAAAAAAAAAQABAAEAAAABAAAAAQABAAEAAAACAAAAAQABAAEAAAADAAAAAQABAAEAAAAEAAAAAQABAAEAAAAFAAAAAQABAAEAAAAGAAAAAQABAAEAAAAHAAAAAQABAAEAAAAIAAAAAQABAAEAAAAJAAAAAQABAAEAAAAKAAAAAQABAAEAAAALAAAAAQABAAEAAAAMAAAAAQABAAEAAAANAAAAAQABAAEAAAAOAAAAAQABAAEAAAAPAAAAAQABAAEAAAAPAP//AQABAAEAAAAOAP//AQABAAEAAAANAP//AQABAAEAAAAMAP//AQABAAEAAAALAP//AQABAAEAAAAKAP//AQABAAEAAAAJAP//AQABAAEAAAAIAP//AQABAAEAAAAHAP//AQABAAEAAAAGAP//AQABAAEAAAAFAP//AQABAAEAAAAEAP//AQABAAEAAAADAP//AQABAAEAAAACAP//AQABAAEAAAABAP//AQABAAEAAAAAAP//AQABAAEAAAD/////AQABAAEAAAD+////AQABAAEAAAD9////AQABAAEAAAD9//7/AQAAAAIAAAD+//7/AQAAAAIAAAD///7/AQAAAAIAAAAAAP7/AQAAAAIAAAABAP7/AQAAAAIAAAACAP7/AQAAAAIAAAADAP7/AQAAAAIAAAAEAP7/AQAAAAIAAAAFAP7/AQAAAAIAAAAGAP7/AQAAAAIAAAAHAP7/AQAAAAIAAAAIAP7/AQAAAAIAAAAJAP7/AQAAAAIAAAAKAP7/AQAAAAIAAAALAP7/AQAAAAIAAAAMAP7/AQAAAAIAAAANAP7/AQAAAAIAAAAOAP7/AQAAAAIAAAAPAP7/AQAAAAIAAAD9//3/AQAAAAEAAAD9//z/AQAAAAEAAAD9//v/AQAAAAEAAAD+//v/AQAAAAEAAAD///v/AQAAAAEAAAAAAPv/AQAAAAEAAAABAPv/AQAAAAEAAAACAPv/AQAAAAEAAAADAPv/AQAAAAEAAAAEAPv/AQAAAAEAAAAFAPv/AQAAAAEAAAAGAPv/AQAAAAEAAAAHAPv/AQAAAAEAAAAIAPv/AQAAAAEAAAAJAPv/AQAAAAEAAAAKAPv/AQAAAAEAAAALAPv/AQAAAAEAAAAMAPv/AQAAAAEAAAANAPv/AQAAAAEAAAAOAPv/AQAAAAEAAAAOAPz/AQAAAAEAAAAOAP3/AQAAAAEAAAAPAP3/AQAAAAEAAAAPAPz/AQAAAAEAAAAPAPv/AQAAAAEAAAANAPz/AQAAAAEAAAAMAPz/AQAAAAEAAAALAPz/AQAAAAEAAAANAP3/AQAAAAEAAAAMAP3/AQAAAAEAAAALAP3/AQAAAAEAAAAKAP3/AQAAAAEAAAAJAP3/AQAAAAEAAAAIAP3/AQAAAAEAAAAHAP3/AQAAAAEAAAAGAP3/AQAAAAEAAAAFAP3/AQAAAAEAAAAEAP3/AQAAAAEAAAADAP3/AQAAAAEAAAACAP3/AQAAAAEAAAABAP3/AQAAAAEAAAAAAP3/AQAAAAEAAAD///3/AQAAAAEAAAD+//3/AQAAAAEAAAD+//z/AQAAAAEAAAD///z/AQAAAAEAAAAAAPz/AQAAAAEAAAABAPz/AQAAAAEAAAACAPz/AQAAAAEAAAADAPz/AQAAAAEAAAAEAPz/AQAAAAEAAAAFAPz/AQAAAAEAAAAGAPz/AQAAAAEAAAAHAPz/AQAAAAEAAAAIAPz/AQAAAAEAAAAJAPz/AQAAAAEAAAAKAPz/AQAAAAEAAAA=")
+tile_set = SubResource("TileSet_eow3j")
 
 [node name="Player" parent="." instance=ExtResource("1_80nbo")]
 collision_mask = 1
@@ -49,26 +52,10 @@ zoom = Vector2(4, 4)
 [node name="Coin" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(160, 0)
 
-[node name="ScoreCounter" type="Label" parent="."]
-offset_left = 80.0
-offset_top = -80.0
-offset_right = 113.0
-offset_bottom = -57.0
-text = "0"
-label_settings = SubResource("LabelSettings_feb5d")
-horizontal_alignment = 1
-
-[node name="Killzone" parent="." instance=ExtResource("4_fc0e3")]
-position = Vector2(91.336105, -72.29133)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(-19.336105, 128.79132)
-shape = SubResource("RectangleShape2D_7jktm")
-
 [node name="WorldBoundaries" type="Node" parent="."]
 
 [node name="WorldBoundaryDown" type="StaticBody2D" parent="WorldBoundaries"]
-position = Vector2(0, 81)
+position = Vector2(0, 62)
 collision_layer = 3
 collision_mask = 3
 
@@ -104,3 +91,45 @@ shape = SubResource("WorldBoundaryShape2D_fc0e3")
 [node name="Obstacle" parent="." instance=ExtResource("5_7jktm")]
 position = Vector2(211, -24)
 scale = Vector2(1, 4.5600004)
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_ryrav")
+
+[node name="ScoreCounter" type="Label" parent="UserInterface"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = -77.0
+offset_right = 113.0
+offset_bottom = -54.0
+text = "0"
+label_settings = SubResource("LabelSettings_feb5d")
+horizontal_alignment = 1
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="CoinTimer" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="ObstacleTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+autostart = true
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_eow3j")
+autoplay = true
+bus = &"Music"
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 49.0
+offset_top = 28.0
+offset_right = 142.0
+offset_bottom = 59.0
+text = "Start game"
+
+[connection signal="timeout" from="Timers/CoinTimer" to="." method="_on_coin_timer_timeout"]
+[connection signal="timeout" from="Timers/ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
