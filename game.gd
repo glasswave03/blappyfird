@@ -4,9 +4,17 @@ extends Node2D
 @export var coin_scene: PackedScene = preload("res://coin.tscn")
 @onready var coin_timer: Timer = $Timers/CoinTimer
 @onready var start_button: Button = $StartButton
+@onready var tile_map_layer: TileMapLayer = $TileMapLayer
+
+const SPEED = 50
 
 func _ready() -> void:
 	Engine.time_scale = 0
+
+func _process(delta: float) -> void:
+	tile_map_layer.position.x -= SPEED * delta
+	if tile_map_layer.position.x < -48:
+		tile_map_layer.position.x = 256
 
 func _on_obstacle_timer_timeout() -> void:
 	var obstacle = inst(obstacle_scene)
@@ -26,4 +34,5 @@ func inst(scene: PackedScene) -> Node2D:
 
 func _on_start_button_pressed() -> void:
 	Engine.time_scale = 1
+	
 	start_button.queue_free()
