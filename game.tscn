@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://rhup3qv1f2vu"]
+[gd_scene load_steps=20 format=4 uid="uid://rhup3qv1f2vu"]
 
 [ext_resource type="PackedScene" uid="uid://cqe1mejxbupeo" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://cwtvvvaarlwcv" path="res://art/sprites/tiles.png" id="1_e2o6t"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dteo8ttk3idft" path="res://user_interface.gd" id="6_ryrav"]
 [ext_resource type="AudioStream" uid="uid://cbcsa7s18nwxd" path="res://audio/blappyfird.wav" id="7_eow3j"]
 [ext_resource type="FontFile" uid="uid://blvs7xqobv1d" path="res://fonts/PixelOperator8.ttf" id="7_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://bf8vofh8ptp4h" path="res://art/sprites/button UI.png" id="7_vef74"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ryrav"]
 texture = ExtResource("1_e2o6t")
@@ -23,6 +24,21 @@ texture = ExtResource("1_e2o6t")
 [sub_resource type="TileSet" id="TileSet_eow3j"]
 sources/1 = SubResource("TileSetAtlasSource_ryrav")
 
+[sub_resource type="LabelSettings" id="LabelSettings_feb5d"]
+font = ExtResource("7_j5wjh")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hve3p"]
+atlas = ExtResource("7_vef74")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vef74"]
+atlas = ExtResource("7_vef74")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfdv2"]
+atlas = ExtResource("7_vef74")
+region = Rect2(64, 16, 16, 16)
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_80nbo"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
@@ -31,9 +47,6 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_feb5d"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fc0e3"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_feb5d"]
-font = ExtResource("7_j5wjh")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_eow3j")
@@ -52,6 +65,68 @@ zoom = Vector2(4, 4)
 
 [node name="Coin" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(160, 0)
+
+[node name="Obstacle" parent="." instance=ExtResource("5_7jktm")]
+position = Vector2(211, -24)
+scale = Vector2(1, 4.5600004)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_eow3j")
+autoplay = true
+bus = &"Music"
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_ryrav")
+
+[node name="ScoreCounter" type="Label" parent="UserInterface"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = -77.0
+offset_right = 117.0
+offset_bottom = -54.0
+text = "0"
+label_settings = SubResource("LabelSettings_feb5d")
+horizontal_alignment = 1
+
+[node name="StartButton" type="TextureButton" parent="UserInterface"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 94.0
+offset_top = 17.0
+offset_right = 110.0
+offset_bottom = 33.0
+texture_normal = SubResource("AtlasTexture_hve3p")
+
+[node name="SettingsButton" type="TextureButton" parent="UserInterface"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 94.0
+offset_top = 33.0
+offset_right = 110.0
+offset_bottom = 49.0
+texture_normal = SubResource("AtlasTexture_vef74")
+
+[node name="ExitButton" type="TextureButton" parent="UserInterface"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 94.0
+offset_top = 49.0
+offset_right = 110.0
+offset_bottom = 65.0
+texture_normal = SubResource("AtlasTexture_mfdv2")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="CoinTimer" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="ObstacleTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+autostart = true
 
 [node name="WorldBoundaries" type="Node" parent="."]
 
@@ -89,48 +164,8 @@ collision_mask = 3
 rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_fc0e3")
 
-[node name="Obstacle" parent="." instance=ExtResource("5_7jktm")]
-position = Vector2(211, -24)
-scale = Vector2(1, 4.5600004)
-
-[node name="UserInterface" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("6_ryrav")
-
-[node name="ScoreCounter" type="Label" parent="UserInterface"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = -77.0
-offset_right = 113.0
-offset_bottom = -54.0
-text = "0"
-label_settings = SubResource("LabelSettings_feb5d")
-horizontal_alignment = 1
-
-[node name="Timers" type="Node" parent="."]
-
-[node name="CoinTimer" type="Timer" parent="Timers"]
-autostart = true
-
-[node name="ObstacleTimer" type="Timer" parent="Timers"]
-wait_time = 2.0
-autostart = true
-
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_eow3j")
-autoplay = true
-bus = &"Music"
-
-[node name="StartButton" type="Button" parent="."]
-offset_left = 49.0
-offset_top = 28.0
-offset_right = 142.0
-offset_bottom = 59.0
-text = "Start game"
-
+[connection signal="pressed" from="UserInterface/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UserInterface/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="UserInterface/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="timeout" from="Timers/CoinTimer" to="." method="_on_coin_timer_timeout"]
 [connection signal="timeout" from="Timers/ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

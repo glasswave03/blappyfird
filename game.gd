@@ -3,7 +3,9 @@ extends Node2D
 @export var obstacle_scene: PackedScene = preload("res://obstacle.tscn")
 @export var coin_scene: PackedScene = preload("res://coin.tscn")
 @onready var coin_timer: Timer = $Timers/CoinTimer
-@onready var start_button: Button = $StartButton
+@onready var start_button: TextureButton = %StartButton
+@onready var settings_button: TextureButton = %SettingsButton
+@onready var exit_button: TextureButton = %ExitButton
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 
 const SPEED = 50
@@ -36,3 +38,13 @@ func _on_start_button_pressed() -> void:
 	Engine.time_scale = 1
 	
 	start_button.queue_free()
+	settings_button.queue_free()
+	exit_button.queue_free()
+
+
+func _on_settings_button_pressed() -> void:
+	get_tree().call_deferred("change_scene_to_file", "res://settings_menu.tscn")
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit(0)
