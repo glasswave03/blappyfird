@@ -6,12 +6,14 @@ extends Node2D
 @onready var start_button: TextureButton = %StartButton
 @onready var settings_button: TextureButton = %SettingsButton
 @onready var exit_button: TextureButton = %ExitButton
+@onready var pause_button: TextureButton = %PauseButton
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 
 const SPEED = 50
 
 func _ready() -> void:
 	Engine.time_scale = 0
+	pause_button.visible = false
 
 func _process(delta: float) -> void:
 	tile_map_layer.position.x -= SPEED * delta
@@ -36,7 +38,7 @@ func inst(scene: PackedScene) -> Node2D:
 
 func _on_start_button_pressed() -> void:
 	Engine.time_scale = 1
-	
+	pause_button.visible = true
 	start_button.queue_free()
 	settings_button.queue_free()
 	exit_button.queue_free()
@@ -48,3 +50,8 @@ func _on_settings_button_pressed() -> void:
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit(0)
+
+
+func _on_pause_button_pressed() -> void:
+	Engine.time_scale = 0
+	
