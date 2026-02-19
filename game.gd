@@ -14,11 +14,13 @@ const SPEED = 50
 func _ready() -> void:
 	Engine.time_scale = 0
 	pause_button.visible = false
+	pause_button.disabled = true
 
 func _process(delta: float) -> void:
 	tile_map_layer.position.x -= SPEED * delta
 	if tile_map_layer.position.x < -48:
 		tile_map_layer.position.x = 256
+	
 
 func _on_obstacle_timer_timeout() -> void:
 	var obstacle = inst(obstacle_scene)
@@ -39,9 +41,15 @@ func inst(scene: PackedScene) -> Node2D:
 func _on_start_button_pressed() -> void:
 	Engine.time_scale = 1
 	pause_button.visible = true
-	start_button.queue_free()
-	settings_button.queue_free()
-	exit_button.queue_free()
+	pause_button.disabled = false
+	
+	start_button.visible = false
+	start_button.disabled = true
+	
+	exit_button.visible = false
+	exit_button.disabled = true
+	if (settings_button):
+		settings_button.queue_free()
 
 
 func _on_settings_button_pressed() -> void:
@@ -54,4 +62,12 @@ func _on_exit_button_pressed() -> void:
 
 func _on_pause_button_pressed() -> void:
 	Engine.time_scale = 0
+	pause_button.visible = false
+	pause_button.disabled = true
 	
+	start_button.visible = true
+	start_button.disabled = false
+	
+	exit_button.visible = true
+	exit_button.disabled = false
+	exit_button.position = Vector2(94,34)

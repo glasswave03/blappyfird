@@ -98,6 +98,7 @@ horizontal_alignment = 1
 
 [node name="StartButton" type="TextureButton" parent="UserInterface"]
 unique_name_in_owner = true
+z_index = 10
 layout_mode = 0
 offset_left = 94.0
 offset_top = 17.0
@@ -107,30 +108,36 @@ texture_normal = SubResource("AtlasTexture_hve3p")
 
 [node name="SettingsButton" type="TextureButton" parent="UserInterface"]
 unique_name_in_owner = true
+z_index = 10
 layout_mode = 0
 offset_left = 94.0
-offset_top = 33.0
+offset_top = 34.0
 offset_right = 110.0
-offset_bottom = 49.0
+offset_bottom = 50.0
 texture_normal = SubResource("AtlasTexture_vef74")
 
 [node name="ExitButton" type="TextureButton" parent="UserInterface"]
 unique_name_in_owner = true
+z_index = 10
 layout_mode = 0
 offset_left = 94.0
-offset_top = 49.0
+offset_top = 51.0
 offset_right = 110.0
-offset_bottom = 65.0
+offset_bottom = 67.0
 texture_normal = SubResource("AtlasTexture_mfdv2")
 
 [node name="PauseButton" type="TextureButton" parent="UserInterface"]
 unique_name_in_owner = true
+z_index = 10
 layout_mode = 0
 offset_left = 223.0
 offset_top = -76.0
 offset_right = 239.0
 offset_bottom = -60.0
 texture_normal = SubResource("AtlasTexture_iotsf")
+
+[node name="ScoreTimer" type="Timer" parent="UserInterface"]
+autostart = true
 
 [node name="Timers" type="Node" parent="."]
 
@@ -181,5 +188,6 @@ shape = SubResource("WorldBoundaryShape2D_fc0e3")
 [connection signal="pressed" from="UserInterface/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="UserInterface/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="UserInterface/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="timeout" from="UserInterface/ScoreTimer" to="UserInterface" method="_on_score_timer_timeout"]
 [connection signal="timeout" from="Timers/CoinTimer" to="." method="_on_coin_timer_timeout"]
 [connection signal="timeout" from="Timers/ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
