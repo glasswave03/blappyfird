@@ -33,9 +33,11 @@ size = Vector2(16, 16)
 script = ExtResource("1_vcivv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_tyhon")
 autoplay = "default"
 frame_progress = 0.22588424
+offset = Vector2(0, -8)
 
 [node name="Killzone" parent="." instance=ExtResource("2_aubd6")]
 

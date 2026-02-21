@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://rhup3qv1f2vu"]
+[gd_scene load_steps=22 format=4 uid="uid://rhup3qv1f2vu"]
 
 [ext_resource type="PackedScene" uid="uid://cqe1mejxbupeo" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://cwtvvvaarlwcv" path="res://art/sprites/tiles.png" id="1_e2o6t"]
@@ -43,6 +43,11 @@ region = Rect2(64, 16, 16, 16)
 atlas = ExtResource("7_vef74")
 region = Rect2(80, 0, 16, 16)
 
+[sub_resource type="LabelSettings" id="LabelSettings_vef74"]
+font = ExtResource("7_j5wjh")
+font_size = 8
+font_color = Color(0.35686275, 0.43137255, 0.88235295, 1)
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_80nbo"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
@@ -67,17 +72,17 @@ collision_mask = 1
 offset = Vector2(100, 0)
 zoom = Vector2(4, 4)
 
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_eow3j")
+autoplay = true
+bus = &"Music"
+
 [node name="Coin" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(160, 0)
 
 [node name="Obstacle" parent="." instance=ExtResource("5_7jktm")]
 position = Vector2(211, -24)
-scale = Vector2(1, 4.5600004)
-
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_eow3j")
-autoplay = true
-bus = &"Music"
+scale = Vector2(1, 4)
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -139,6 +144,18 @@ texture_normal = SubResource("AtlasTexture_iotsf")
 [node name="ScoreTimer" type="Timer" parent="UserInterface"]
 autostart = true
 
+[node name="Tutorial" type="Label" parent="UserInterface"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = -17.0
+offset_right = 158.0
+offset_bottom = 13.0
+text = "Collect coins and 
+don't hit the obstacles"
+label_settings = SubResource("LabelSettings_vef74")
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Timers" type="Node" parent="."]
 
 [node name="CoinTimer" type="Timer" parent="Timers"]
@@ -151,7 +168,7 @@ autostart = true
 [node name="WorldBoundaries" type="Node" parent="."]
 
 [node name="WorldBoundaryDown" type="StaticBody2D" parent="WorldBoundaries"]
-position = Vector2(0, 62)
+position = Vector2(0, 66)
 collision_layer = 3
 collision_mask = 3
 

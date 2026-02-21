@@ -8,6 +8,7 @@ extends Node2D
 @onready var exit_button: TextureButton = %ExitButton
 @onready var pause_button: TextureButton = %PauseButton
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
+@onready var user_interface: Control = $UserInterface
 
 const SPEED = 50
 
@@ -23,18 +24,27 @@ func _process(delta: float) -> void:
 	
 
 func _on_obstacle_timer_timeout() -> void:
-	var obstacle = inst(obstacle_scene)
-	obstacle.scale.y = randf_range(2, 7.5)
+	var obstacle_top = inst(obstacle_scene)
+	var obstacle_bot = inst(obstacle_scene)
+	obstacle_bot.rotation_degrees = 180
+	
+	obstacle_top.scale.y = 4
+	obstacle_bot.scale.y = 4
+	
+	obstacle_top.position = Vector2(250, randf_range(-80, -48))
+	obstacle_bot.position = Vector2(250, randf_range(32, 96))
+	#while ((obstacle_bot.position.y - obstacle_top.position.y) < 40):
+	#	obstacle_top.position = Vector2(250, randf_range(-80, -48))
+	#	obstacle_bot.position = Vector2(250, randf_range(32, 112))
 	
 
 func _on_coin_timer_timeout() -> void:
-	inst(coin_scene)
+	var coin = inst(coin_scene)
+	coin.position = Vector2(250, randf_range(-80, 60))
 	coin_timer.start(randf_range(1.5, 5))
 	
 func inst(scene: PackedScene) -> Node2D:
 	var obj = scene.instantiate()
-	var spawn = Vector2(250, randf_range(-80, 80))
-	obj.position = spawn
 	add_child(obj)
 	return obj
 
@@ -57,6 +67,9 @@ func _on_settings_button_pressed() -> void:
 
 
 func _on_exit_button_pressed() -> void:
+	if (user_interface.score > SaveLoad.contents_to_save.highscore):
+		SaveLoad.contents_to_save.highscore = user_interface.score
+		SaveLoad._save()
 	get_tree().quit(0)
 
 
