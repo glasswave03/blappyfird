@@ -4,12 +4,12 @@ extends Node2D
 @export var coin_scene: PackedScene = preload("res://coin.tscn")
 @onready var coin_timer: Timer = $Timers/CoinTimer
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
-@onready var user_interface: Control = $UserInterface
 @onready var tutorial: Label = $"../../GUI/GameUI/Tutorial"
 
 const SPEED = 50
 
 func _ready() -> void:
+	Global._save()
 	Engine.time_scale = 0
 
 func _process(delta: float) -> void:
@@ -29,9 +29,6 @@ func _on_obstacle_timer_timeout() -> void:
 	
 	obstacle_top.position = Vector2(250, randf_range(-80, -48))
 	obstacle_bot.position = Vector2(250, randf_range(32, 96))
-	#while ((obstacle_bot.position.y - obstacle_top.position.y) < 40):
-	#	obstacle_top.position = Vector2(250, randf_range(-80, -48))
-	#	obstacle_bot.position = Vector2(250, randf_range(32, 112))
 	
 
 func _on_coin_timer_timeout() -> void:

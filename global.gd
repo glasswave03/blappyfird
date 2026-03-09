@@ -1,5 +1,6 @@
 extends Node
 
+var game_manager: GameManager
 const save_location = "user://save.json"
 
 var contents_to_save: Dictionary = {
@@ -7,7 +8,6 @@ var contents_to_save: Dictionary = {
 }
 
 func _ready() -> void:
-	#_load()
 	pass
 
 func _save():
