@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhvwr0imwdvll"]
+
+[ext_resource type="PackedScene" uid="uid://rhup3qv1f2vu" path="res://game.tscn" id="1_70yv6"]
+[ext_resource type="Script" uid="uid://mqhe6gkb8nt" path="res://game_manager.gd" id="1_o2178"]
+[ext_resource type="PackedScene" uid="uid://dkhk54c214ler" path="res://main_menu.tscn" id="2_smx3j"]
+[ext_resource type="PackedScene" uid="uid://cl8ttrpig7kcu" path="res://game_ui.tscn" id="4_d5upp"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_o2178")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Game" parent="World" instance=ExtResource("1_70yv6")]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainMenu" parent="GUI" instance=ExtResource("2_smx3j")]
+layout_mode = 1
+
+[node name="StartButton" parent="GUI/MainMenu" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="GameUI" parent="GUI" instance=ExtResource("4_d5upp")]
+visible = false
+layout_mode = 1
+
+[node name="StartButton" parent="GUI/GameUI" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="ExitButton" parent="GUI/GameUI" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[connection signal="timeout" from="World/Game/Timers/ScoreTimer" to="." method="_on_score_timer_timeout"]
+
+[editable path="World/Game"]
+[editable path="GUI/MainMenu"]
+[editable path="GUI/GameUI"]

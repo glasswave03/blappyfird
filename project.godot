@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="blappyfird"
-run/main_scene="uid://rhup3qv1f2vu"
+run/main_scene="uid://bhvwr0imwdvll"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SaveLoad="*res://save_load.gd"
+Global="*res://global.gd"
 
 [input]
 

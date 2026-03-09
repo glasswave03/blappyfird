@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dyqhlo0dr87ey"]
 
-[node name="SettingsMenu" type="Node2D"]
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)

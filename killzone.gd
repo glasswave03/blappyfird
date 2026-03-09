@@ -2,7 +2,7 @@ extends Area2D
 
 var fail_scene = preload("res://fail_menu.tscn").instantiate()
 @onready var timer: Timer = $Timer
-@onready var pause_button: TextureButton = $"../../UserInterface/PauseButton"
+@onready var pause_button: TextureButton = $"../../../../GUI/GameUI/PauseButton"
 
 func _on_body_entered(body: Node2D) -> void:
 	timer.start(1)
