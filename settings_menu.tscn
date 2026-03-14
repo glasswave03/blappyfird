@@ -18,6 +18,53 @@ offset_left = 92.0
 offset_right = 92.0
 script = ExtResource("1_mlw3h")
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -55.0
+offset_right = 95.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume:"
+
+[node name="Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+min_value = -60.0
+max_value = 10.0
+
+[node name="MuteButton" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mute:"
+
+[node name="ControlLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Controls:"
+
+[node name="ControlOptions" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Classic"
+popup/item_0/id = 0
+popup/item_1/text = "Follow mouse"
+popup/item_1/id = 1
+popup/item_2/text = "Linear"
+popup/item_2/id = 2
+popup/item_3/text = "Spaceship"
+popup/item_3/id = 3
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = -46.0
@@ -36,4 +83,7 @@ offset_right = 40.0
 offset_bottom = 91.0
 texture_normal = SubResource("AtlasTexture_mlw3h")
 
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/MuteButton" to="." method="_on_mute_button_toggled"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/ControlOptions" to="." method="_on_control_options_item_selected"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
