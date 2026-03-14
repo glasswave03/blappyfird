@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4hewhpn62h8o"]
+
+[ext_resource type="Texture2D" uid="uid://dr5d6oscuscuh" path="res://art/sprites/dead_player.png" id="1_gwnuu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gwnuu"]
+radius = 7.0
+
+[node name="DeadPlayer" type="RigidBody2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_gwnuu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gwnuu")

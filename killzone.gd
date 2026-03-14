@@ -1,14 +1,16 @@
 extends Area2D
 
-var fail_scene = preload("res://fail_menu.tscn").instantiate()
+var dead_player_scene = preload("res://dead_player.tscn").instantiate()
 @onready var timer: Timer = $Timer
 
 func _on_body_entered(body: Node2D) -> void:
-	# TODO: switch player to dead player sprite, make it fall on the ground 
-	#var pos = get_node("World/Game/Player").position
-	#var dead: Sprite2D
-	#dead.position = pos
+	var pos = body.position
+	var dead_player = dead_player_scene
+	
+	dead_player.position = pos
+	Global.game_manager.get_child(0).call_deferred("add_child", dead_player)
 	body.queue_free()
+	
 	Global.game_manager.clear_gui()
 	timer.start(1)
 	timer.ignore_time_scale = true

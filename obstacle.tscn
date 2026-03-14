@@ -30,6 +30,7 @@ animations = [{
 size = Vector2(16, 16)
 
 [node name="Obstacle" type="Area2D"]
+z_index = 10
 script = ExtResource("1_vcivv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
