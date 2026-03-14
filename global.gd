@@ -1,5 +1,6 @@
 extends Node
 
+var score: int = 0
 var game_manager: GameManager
 const save_location = "user://save.json"
 
@@ -22,4 +23,7 @@ func _load():
 	
 	var save_data = data.duplicate()
 	contents_to_save.highscore = save_data.highscore
+	
+func add_score():
+	score += 5
 	

@@ -11,7 +11,7 @@ var current_world
 var scene_cache: Dictionary = {}
 
 func _ready() -> void:
-	#Global.game_controller = self
+	Global.game_manager = self
 	current_gui = $GUI/MainMenu
 	current_world = $World/Game
 	if current_gui and current_gui.scene_file_path:
@@ -62,12 +62,12 @@ func change_world(new_scene: String, delete: bool = true) -> void:
 	current_world = new_node
 
 func add_score():
-	score += 5
-	score_counter.text = str(score)
+	Global.score += 5
+	score_counter.text = str(Global.score)
 
 func _on_score_timer_timeout() -> void:
-	score += 1
-	score_counter.text = str(score)
+	Global.score += 1
+	score_counter.text = str(Global.score)
 
 func _on_settings_button_pressed() -> void:
 	change_gui("res://settings_menu.tscn", false)

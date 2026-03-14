@@ -4,7 +4,6 @@ extends Node2D
 @export var coin_scene: PackedScene = preload("res://coin.tscn")
 @onready var coin_timer: Timer = $Timers/CoinTimer
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
-@onready var tutorial: Label = $"../../GUI/GameUI/Tutorial"
 
 const SPEED = 50
 
@@ -13,7 +12,6 @@ func _ready() -> void:
 	Engine.time_scale = 0
 
 func _process(delta: float) -> void:
-	tutorial.position.x -= 50 * delta
 	tile_map_layer.position.x -= SPEED * delta
 	if tile_map_layer.position.x < -48:
 		tile_map_layer.position.x = 256

@@ -21,6 +21,10 @@ grow_vertical = 2
 
 [node name="StartButton" parent="." instance=ExtResource("2_jix8l")]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 16.0
+offset_bottom = 16.0
 
 [node name="SettingsButton" type="TextureButton" parent="."]
 z_index = 10

@@ -29,13 +29,19 @@ script = ExtResource("1_mj8uy")
 
 [node name="StartButton" parent="." instance=ExtResource("2_3rlp6")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 16.0
+offset_bottom = 16.0
 
 [node name="ExitButton" parent="." instance=ExtResource("4_obik5")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 16.0
+offset_bottom = 16.0
 
 [node name="PauseButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
