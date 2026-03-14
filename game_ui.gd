@@ -7,10 +7,10 @@ extends Control
 @onready var score_counter: Label = $ScoreCounter
 
 func _ready() -> void:
-	start_button.position = Vector2(98, 0)
+	start_button.position = Vector2(92, 0)
 	start_button.visible = false
 	
-	exit_button.position = Vector2(98, 17)
+	exit_button.position = Vector2(92, 17)
 	exit_button.visible = false
 	
 	pause_button.position = Vector2(222, -76)
@@ -31,6 +31,7 @@ func _on_pause_button_pressed() -> void:
 
 
 func _on_start_button_pressed() -> void:
+	self.visible = true
 	Engine.time_scale = 1
 	pause_button.visible = true
 	start_button.visible = false

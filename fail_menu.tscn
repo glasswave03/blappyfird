@@ -27,6 +27,8 @@ font = ExtResource("6_cryvp")
 [node name="FailMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_top = 3.0
+offset_bottom = 3.0
 script = ExtResource("1_cryvp")
 
 [node name="FailText" type="Label" parent="."]

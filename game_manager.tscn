@@ -21,9 +21,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="GameUI" parent="GUI" instance=ExtResource("4_d5upp")]
-layout_mode = 1
-
 [node name="MainMenu" parent="GUI" instance=ExtResource("2_smx3j")]
 layout_mode = 1
 offset_left = -1.0
@@ -31,17 +28,5 @@ offset_top = -11.0
 offset_right = -1.0
 offset_bottom = -11.0
 
-[node name="StartButton" parent="GUI/MainMenu" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 16.0
-offset_bottom = 16.0
-
-[connection signal="timeout" from="World/Game/Timers/ScoreTimer" to="." method="_on_score_timer_timeout"]
-[connection signal="pressed" from="GUI/MainMenu/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="GUI/MainMenu/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="GUI/MainMenu/ExitButton" to="." method="_on_exit_button_pressed"]
-
-[editable path="World/Game"]
-[editable path="GUI/GameUI"]
-[editable path="GUI/MainMenu"]
+[node name="GameUI" parent="GUI" instance=ExtResource("4_d5upp")]
+layout_mode = 1

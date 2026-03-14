@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var obstacle_scene: PackedScene = preload("res://obstacle.tscn")
-@export var coin_scene: PackedScene = preload("res://coin.tscn")
+const obstacle_scene: PackedScene = preload("res://obstacle.tscn")
+const coin_scene: PackedScene = preload("res://coin.tscn")
 @onready var coin_timer: Timer = $Timers/CoinTimer
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 
@@ -38,3 +38,7 @@ func inst(scene: PackedScene) -> Node2D:
 	var obj = scene.instantiate()
 	add_child(obj)
 	return obj
+
+
+func _on_score_timer_timeout() -> void:
+	Global.score += 1

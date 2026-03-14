@@ -12,10 +12,24 @@ var scene_cache: Dictionary = {}
 
 func _ready() -> void:
 	Global.game_manager = self
+	
+	var game_ui = $GUI/GameUI
+	game_ui.visible = false
 	current_gui = $GUI/MainMenu
 	current_world = $World/Game
+	
 	if current_gui and current_gui.scene_file_path:
 		scene_cache[current_gui.scene_file_path] = current_gui
+
+func _process(_delta: float) -> void:
+	var currentScore = 0
+	if (Global.score != currentScore):
+		score_counter.text = str(Global.score)
+
+func clear_gui() -> void:
+	var scene_path = current_gui.scene_file_path
+	current_gui.queue_free() # Removes node entirely
+	scene_cache.erase(scene_path)
 
 func change_gui(new_scene: String, delete: bool = true) -> void:
 	if current_gui != null:
@@ -64,18 +78,3 @@ func change_world(new_scene: String, delete: bool = true) -> void:
 func add_score():
 	Global.score += 5
 	score_counter.text = str(Global.score)
-
-func _on_score_timer_timeout() -> void:
-	Global.score += 1
-	score_counter.text = str(Global.score)
-
-func _on_settings_button_pressed() -> void:
-	change_gui("res://settings_menu.tscn", false)
-	
-
-func _on_start_button_pressed() -> void:
-	Engine.time_scale = 1
-	change_gui("res://game_ui.tscn", false)
-
-func _on_exit_button_pressed() -> void:
-	get_tree().quit(0)

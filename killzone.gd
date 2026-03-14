@@ -4,6 +4,7 @@ var fail_scene = preload("res://fail_menu.tscn").instantiate()
 @onready var timer: Timer = $Timer
 
 func _on_body_entered(body: Node2D) -> void:
+	Global.game_manager.clear_gui()
 	timer.start(1)
 	timer.ignore_time_scale = true
 	Engine.time_scale = 0.5
@@ -17,4 +18,5 @@ func _on_body_entered(body: Node2D) -> void:
 	if (timer.is_stopped()): timer.timeout.emit()
 
 func _on_timer_timeout():
+	Global.game_manager.change_world("res://fail_screen.tscn")
 	Global.game_manager.change_gui("res://fail_menu.tscn")
