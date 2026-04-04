@@ -12,11 +12,11 @@ var scene_cache: Dictionary = {}
 
 func _ready() -> void:
 	Global.game_manager = self
-	
 	var game_ui = $GUI/GameUI
 	game_ui.visible = false
 	current_gui = $GUI/MainMenu
 	current_world = $World/Game
+	get_tree().paused = true
 	
 	if current_gui and current_gui.scene_file_path:
 		scene_cache[current_gui.scene_file_path] = current_gui

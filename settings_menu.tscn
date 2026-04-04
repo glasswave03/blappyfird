@@ -12,6 +12,7 @@ atlas = ExtResource("2_0cmel")
 region = Rect2(48, 0, 16, 16)
 
 [node name="SettingsMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_left = 92.0

@@ -66,6 +66,7 @@ autostart = true
 autostart = true
 
 [node name="CloudTimer" type="Timer" parent="Timers"]
+wait_time = 0.8
 autostart = true
 
 [node name="WorldBoundaries" type="Node" parent="."]

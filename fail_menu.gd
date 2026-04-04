@@ -13,6 +13,7 @@ func _ready() -> void:
 	Global._save()
 
 func _on_retry_button_pressed() -> void:
+	get_tree().paused = true
 	Global.score = 0
 	Global.game_manager.change_world("res://game.tscn")
 	Global.game_manager.change_gui("res://main_menu.tscn")

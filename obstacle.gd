@@ -1,7 +1,8 @@
 extends Area2D
 
-const SPEED = 50
-const MAP_EDGE_LEFT = -80
+var SPEED := 80.0
+# Have to have big map edge so it doesnt get destroyed before death timer goes off
+const MAP_EDGE_LEFT = -320
 
 func _process(delta: float) -> void:
 	position.x -= SPEED * delta

@@ -6,15 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://cl8ttrpig7kcu" path="res://game_ui.tscn" id="4_d5upp"]
 
 [node name="GameManager" type="Node" node_paths=PackedStringArray("gui", "world")]
+process_mode = 3
 script = ExtResource("1_o2178")
 gui = NodePath("GUI")
 world = NodePath("World")
 
 [node name="World" type="Node2D" parent="."]
+process_mode = 1
 
 [node name="Game" parent="World" instance=ExtResource("1_70yv6")]
 
 [node name="GUI" type="Control" parent="."]
+process_mode = 3
 z_index = 1000
 layout_mode = 3
 anchors_preset = 0

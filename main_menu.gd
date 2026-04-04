@@ -15,7 +15,7 @@ func _on_settings_button_pressed() -> void:
 	
 
 func _on_start_button_pressed() -> void:
-	Engine.time_scale = 1
+	get_tree().paused = false
 	Global.game_manager.change_gui("res://game_ui.tscn")
 
 func _on_exit_button_pressed() -> void:

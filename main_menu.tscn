@@ -17,6 +17,7 @@ region = Rect2(64, 16, 16, 16)
 font = ExtResource("4_jix8l")
 
 [node name="MainMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +29,9 @@ script = ExtResource("1_fu7sn")
 [node name="StartButton" parent="." instance=ExtResource("2_jix8l")]
 layout_mode = 0
 offset_left = 92.0
+offset_top = 0.0
 offset_right = 108.0
+offset_bottom = 16.0
 
 [node name="SettingsButton" type="TextureButton" parent="."]
 z_index = 10
