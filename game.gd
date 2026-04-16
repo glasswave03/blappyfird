@@ -3,11 +3,15 @@ extends Node2D
 const obstacle_scene: PackedScene = preload("res://obstacle.tscn")
 const coin_scene: PackedScene = preload("res://coin.tscn")
 const cloud_scene: PackedScene = preload("res://cloud.tscn")
+const player_default_scene: PackedScene = preload("res://player.tscn")
+const player_mouse_scene: PackedScene = preload("res://player_mouse.tscn")
+const player_hover_scene: PackedScene = preload("res://player_hover.tscn")
+const player_zigzag_scene: PackedScene = preload("res://player_zigzag.tscn")
+
 @onready var coin_timer: Timer = $Timers/CoinTimer
 @onready var cloud_timer: Timer = $Timers/CloudTimer
 @onready var obstacle_timer: Timer = $Timers/ObstacleTimer
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
-@onready var player: CharacterBody2D = $Player
 
 const MAP_EDGE_RIGHT := 280
 const MAP_EDGE_LEFT := -160
