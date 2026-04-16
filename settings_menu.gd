@@ -1,5 +1,7 @@
 extends Control
 
+func _ready() -> void:
+	%ControlOptions.select(Global.player_type)
 
 func _on_back_button_pressed() -> void:
 	Global.game_manager.change_gui("res://main_menu.tscn")
@@ -13,10 +15,10 @@ func _on_mute_button_toggled(toggled_on: bool) -> void:
 func _on_control_options_item_selected(index: int) -> void:
 	match index:
 		0:
-			pass
+			Global.player_type = Global.PlayerType.DEFAULT
 		1:
-			pass
+			Global.player_type = Global.PlayerType.MOUSE
 		2:
-			pass
+			Global.player_type = Global.PlayerType.HOVER
 		3:
-			pass
+			Global.player_type = Global.PlayerType.ZIGZAG

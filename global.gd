@@ -1,8 +1,12 @@
 extends Node
 
 var score: int = 0
+var player_type: PlayerType
 var game_manager: GameManager
 const save_location = "user://save.json"
+const ROTA = 360
+
+enum PlayerType {DEFAULT, MOUSE, HOVER, ZIGZAG}
 
 var contents_to_save: Dictionary = {
 	"highscore": 0

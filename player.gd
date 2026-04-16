@@ -1,15 +1,14 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
-const JUMP_VELOCITY = -150.0
-const ROTA = 360
+const SPEED := 100.0
+const JUMP_VELOCITY := -150.0
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var jump_sfx: AudioStreamPlayer2D = $JumpSFX
 
 func _physics_process(delta: float) -> void:
 	# rotate towards y
-	rotation = velocity.y / ROTA
+	rotation = velocity.y / Global.ROTA
 	
 	# gravity
 	if not is_on_floor():
@@ -32,7 +31,6 @@ func _physics_process(delta: float) -> void:
 	# flip_h depending on direction
 	if velocity.x < 0: 
 		sprite.flip_h = true
-		rotation = -(velocity.y / 360)
 	else: 
 		sprite.flip_h = false
 

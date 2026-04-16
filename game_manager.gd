@@ -2,9 +2,6 @@ class_name GameManager extends Node
 
 @export var gui: Control
 @export var world: Node2D
-@export var score: int = 0
-
-@onready var score_counter: Label = $GUI/GameUI/ScoreCounter
 
 var current_gui
 var current_world
@@ -12,19 +9,12 @@ var scene_cache: Dictionary = {}
 
 func _ready() -> void:
 	Global.game_manager = self
-	var game_ui = $GUI/GameUI
-	game_ui.visible = false
 	current_gui = $GUI/MainMenu
-	current_world = $World/Game
+	current_world = $World/MenuScreen
 	get_tree().paused = true
 	
 	if current_gui and current_gui.scene_file_path:
 		scene_cache[current_gui.scene_file_path] = current_gui
-
-func _process(_delta: float) -> void:
-	var currentScore = 0
-	if (Global.score != currentScore):
-		score_counter.text = str(Global.score)
 
 func clear_gui() -> void:
 	var scene_path = current_gui.scene_file_path
@@ -74,7 +64,3 @@ func change_world(new_scene: String, delete: bool = true) -> void:
 		world.add_child(new_node)
 	
 	current_world = new_node
-
-func add_score():
-	Global.score += 5
-	score_counter.text = str(Global.score)

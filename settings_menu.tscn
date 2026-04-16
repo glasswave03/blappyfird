@@ -48,22 +48,21 @@ layout_mode = 2
 text = "Mute:"
 
 [node name="ControlLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "Controls:"
 
 [node name="ControlOptions" type="OptionButton" parent="MarginContainer/VBoxContainer"]
-visible = false
+unique_name_in_owner = true
 layout_mode = 2
 selected = 0
 item_count = 4
-popup/item_0/text = "Classic"
+popup/item_0/text = "Default"
 popup/item_0/id = 0
-popup/item_1/text = "Follow mouse"
+popup/item_1/text = "Mouse"
 popup/item_1/id = 1
-popup/item_2/text = "Linear"
+popup/item_2/text = "Hover"
 popup/item_2/id = 2
-popup/item_3/text = "Spaceship"
+popup/item_3/text = "Zigzag"
 popup/item_3/id = 3
 
 [node name="Label" type="Label" parent="."]

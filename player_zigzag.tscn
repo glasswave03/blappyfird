@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvdfvxkdp6nyo"]
+[gd_scene load_steps=8 format=3 uid="uid://dp30sdoskom7w"]
 
+[ext_resource type="Script" uid="uid://ctfqvlpy40eho" path="res://player_zigzag.gd" id="1_oadvt"]
 [ext_resource type="Texture2D" uid="uid://nrsfft6dc65m" path="res://art/sprites/player.png" id="1_wvbev"]
 [ext_resource type="AudioStream" uid="uid://vh5g4ox6sn5k" path="res://audio/jump.wav" id="2_oadvt"]
 
@@ -29,6 +30,9 @@ animations = [{
 radius = 7.0
 
 [node name="PlayerZigzag" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_oadvt")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xt8b1")

@@ -32,12 +32,28 @@ var top_range := Vector2(-122, -48)
 var bot_range := Vector2(32, 104)
 
 func _ready() -> void:
+	_add_player()
 	Global._save()
+	get_tree().paused = false
 
 func _process(delta: float) -> void:
 	tile_map_layer.position.x -= SPEED * delta
 	if tile_map_layer.position.x < MAP_EDGE_LEFT:
 		tile_map_layer.position.x = 256
+
+func _add_player() -> CharacterBody2D:
+	var player: CharacterBody2D
+	match Global.player_type:
+		Global.PlayerType.DEFAULT:
+			player = inst(player_default_scene)
+		Global.PlayerType.MOUSE:
+			player = inst(player_mouse_scene)
+		Global.PlayerType.HOVER:
+			player = inst(player_hover_scene)
+		Global.PlayerType.ZIGZAG:
+			player = inst(player_zigzag_scene)
+	player.position = Vector2(0,0)
+	return player
 
 func _on_obstacle_timer_timeout() -> void:
 	obstacle_timer.start(TIME)

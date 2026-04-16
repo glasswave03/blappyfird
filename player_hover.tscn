@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://1re3gs2rt7vj"]
+[gd_scene load_steps=8 format=3 uid="uid://b5s6wgthg5e0h"]
 
+[ext_resource type="Script" uid="uid://b2vbbkwadpkfj" path="res://player_hover.gd" id="1_p6iuu"]
 [ext_resource type="Texture2D" uid="uid://nrsfft6dc65m" path="res://art/sprites/player.png" id="1_sswc8"]
 [ext_resource type="AudioStream" uid="uid://vh5g4ox6sn5k" path="res://audio/jump.wav" id="2_p6iuu"]
 
@@ -29,6 +30,9 @@ animations = [{
 radius = 7.0
 
 [node name="PlayerHover" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_p6iuu")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dqaa0")
