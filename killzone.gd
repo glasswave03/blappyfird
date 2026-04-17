@@ -19,5 +19,5 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_timer_timeout():
 	dead_player.queue_free()
-	Global.game_manager.change_world("res://fail_screen.tscn")
+	Global.game_manager.change_world("res://menu_screen.tscn")
 	Global.game_manager.change_gui("res://fail_menu.tscn")

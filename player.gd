@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 	# flip_h depending on direction
 	if velocity.x < 0: 
 		sprite.flip_h = true
+		rotation = -(velocity.y / Global.ROTA)
 	else: 
 		sprite.flip_h = false
 

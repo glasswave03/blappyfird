@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://j71474q3pvkf"]
+
+[ext_resource type="PackedScene" uid="uid://d0aruwtb2gcmg" path="res://killzone.tscn" id="1_twf0v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8qk85"]
+radius = 8.0
+
+[node name="MineObstacle" type="Area2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(1, 0, 0, 1)
+
+[node name="Killzone" parent="." instance=ExtResource("1_twf0v")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("CircleShape2D_8qk85")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

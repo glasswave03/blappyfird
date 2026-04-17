@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyqhlo0dr87ey"]
+[gd_scene load_steps=8 format=3 uid="uid://dyqhlo0dr87ey"]
 
 [ext_resource type="Script" uid="uid://0d4ib4gw4ljo" path="res://settings_menu.gd" id="1_mlw3h"]
 [ext_resource type="FontFile" uid="uid://blvs7xqobv1d" path="res://fonts/PixelOperator8.ttf" id="1_ufg0w"]
@@ -6,6 +6,14 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_0cmel"]
 font = ExtResource("1_ufg0w")
+
+[sub_resource type="LabelSettings" id="LabelSettings_mlw3h"]
+font = ExtResource("1_ufg0w")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_d0eu6"]
+font = ExtResource("1_ufg0w")
+font_size = 8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mlw3h"]
 atlas = ExtResource("2_0cmel")
@@ -24,21 +32,29 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -49.0
-offset_top = -55.0
-offset_right = 95.0
-offset_bottom = 107.0
+offset_left = -63.0
+offset_top = -82.0
+offset_right = 81.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
+[node name="SettingsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_0cmel")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="VolumeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Volume:"
+label_settings = SubResource("LabelSettings_mlw3h")
 
-[node name="Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
+[node name="VolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 min_value = -60.0
 max_value = 10.0
@@ -47,11 +63,15 @@ max_value = 10.0
 layout_mode = 2
 text = "Mute:"
 
-[node name="ControlLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="PlayerControl" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PlayerControl"]
 layout_mode = 2
 text = "Controls:"
+label_settings = SubResource("LabelSettings_d0eu6")
 
-[node name="ControlOptions" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+[node name="Options" type="OptionButton" parent="MarginContainer/VBoxContainer/PlayerControl"]
 unique_name_in_owner = true
 layout_mode = 2
 selected = 0
@@ -65,17 +85,6 @@ popup/item_2/id = 2
 popup/item_3/text = "Zigzag"
 popup/item_3/id = 3
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = -46.0
-offset_top = -75.0
-offset_right = 62.0
-offset_bottom = -52.0
-text = "SETTINGS"
-label_settings = SubResource("LabelSettings_0cmel")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BackButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_top = 51.0
@@ -83,7 +92,7 @@ offset_right = 40.0
 offset_bottom = 91.0
 texture_normal = SubResource("AtlasTexture_mlw3h")
 
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/VolumeSlider" to="." method="_on_volume_value_changed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/MuteButton" to="." method="_on_mute_button_toggled"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/ControlOptions" to="." method="_on_control_options_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/PlayerControl/Options" to="." method="_on_control_options_item_selected"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

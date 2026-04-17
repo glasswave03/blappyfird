@@ -1,7 +1,7 @@
 extends Control
 
 func _ready() -> void:
-	%ControlOptions.select(Global.player_type)
+	%Options.select(Global.player_type)
 
 func _on_back_button_pressed() -> void:
 	Global.game_manager.change_gui("res://main_menu.tscn")
