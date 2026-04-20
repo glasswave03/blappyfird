@@ -7,8 +7,6 @@ const SPEED := 100.0
 func _process(delta: float) -> void:
 	rotation = velocity.y / Global.ROTA
 	
-	if not is_on_floor():
-		velocity += (get_gravity()/2) * delta
 	
 	var direction = get_local_mouse_position()
 	velocity = direction * SPEED * delta
